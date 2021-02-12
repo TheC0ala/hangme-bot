@@ -14,33 +14,33 @@ def create_btn(text_btn, call_btn):
 # new game btn
 def play_markup():
   play = types.InlineKeyboardMarkup()
-  play.add( create_btn( 'Начать игру 🎮', 'play' ) )
+  play.add( create_btn( 'Oyuna Başla 🎮', 'play' ) )
   return play
 
 # stop game btn
 def give_up_markup(word):
   give_up = types.InlineKeyboardMarkup()
-  give_up.add( create_btn( 'Сдаться ❌', 'give_up_{}'.format(word) ) )
+  give_up.add( create_btn( 'Təslim ❌', 'give_up_{}'.format(word) ) )
   return give_up
 
 # hello menu
 @bot.message_handler(commands = [ 'start', 'help' ])
 def start(m):
-  msg = '*Повесь Бота* 🤖\n\nПравила просты: пишешь буквы пока не угадаешь слово которое я загадал! Ошибаешься - по-тихоньку вешаю Бота! Сильно умный? Пиши слово сразу 🙊'
+  msg = '*Hang Bot* 🤖 *Qaydalar sadədir soruşduğum sözü tapana qədər hərf yazırsan. Düz hərfləri təxmin etməsən botu asıram 🙀'
     
   bot.send_message( m.chat.id, msg, parse_mode = 'Markdown' )
-  bot.send_message( m.chat.id, 'Поиграем? 😜', reply_markup = play_markup() )
+  bot.send_message( m.chat.id, 'Başlayaq? 😜', reply_markup = play_markup() )
 
 # start new game
 def play(m, word, placeholder, guessed, tries, letters, guess):
   try:
     if not guessed and tries > 0:
       if guess == '': # is start
-        msg = 'Угадай-ка букву!\n{}\n{}\nПопыток: {}'.format(' '.join(placeholder), config.stages[tries], tries)
+        msg = 'Sözü təxmin et!\n{}\n{}\nYoxlamalar: {}'.format(' '.join(placeholder), config.stages[tries], tries)
       else:
         if len(guess) == 1 and guess.isalpha(): # is letter
           if guess in letters:
-            msg = 'Уже пробовал! Будь внимательнее!\n{}\n{}\nПопыток: {}\nБуквы: {}'.format(' '.join(placeholder), config.stages[tries], tries,' '.join(letters))
+            msg = 'Mən onsuzda yoxladım! Diqqətli ol!\n{}\n{}\nYoxlama: {}\nБуквы: {}'.format(' '.join(placeholder), config.stages[tries], tries,' '.join(letters))
 
           elif guess not in word:
             tries -= 1
