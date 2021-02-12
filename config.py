@@ -1,4 +1,4 @@
-TOKEN = '' # token from BotFather
+TOKEN = '1594267025:AAGYW2ofk0Ca3GbWuD4wUWcYXwGATlK75xs' # token from BotFather
 
 stages = [
   """
